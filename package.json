@@ -1,0 +1,57 @@
+{
+  "name": "expo-persistent-notifications",
+  "version": "0.1.0",
+  "description": "Expo native module for persistent and dynamic notifications with location tracking and real-time updates",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module"
+  },
+  "keywords": [
+    "expo",
+    "expo-module",
+    "react-native",
+    "notifications",
+    "persistent-notifications",
+    "foreground-service",
+    "location-tracking",
+    "android",
+    "ios"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/expo-persistent-notifications.git"
+  },
+  "author": "Fernando",
+  "license": "MIT",
+  "homepage": "https://github.com/yourusername/expo-persistent-notifications#readme",
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "expo-module-scripts": "^3.5.0",
+    "expo-modules-core": "^1.11.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "expo-modules-core": "^1.11.0",
+    "@expo/config-plugins": "^8.0.0"
+  },
+  "expo": {
+    "android": {
+      "sourceDir": "./android"
+    },
+    "ios": {
+      "sourceDir": "./ios"
+    }
+  }
+}

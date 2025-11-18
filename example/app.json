@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "Bus Tracking Example",
+    "slug": "expo-persistent-notifications-example",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.buspersistentnotifications"
+    },
+    "android": {
+      "package": "com.example.buspersistentnotifications"
+    },
+    "plugins": [
+      [
+        "expo-persistent-notifications",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Esta aplicación necesita acceso a tu ubicación para rastrear la llegada de buses en tiempo real.",
+          "locationWhenInUsePermission": "Esta aplicación necesita acceso a tu ubicación para rastrear la llegada de buses."
+        }
+      ]
+    ]
+  }
+}

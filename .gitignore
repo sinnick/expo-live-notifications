@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+
+# Build
+build/
+*.log
+*.tgz
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Expo
+.expo/
+.expo-shared/
+
+# TypeScript
+*.tsbuildinfo
+
+# Android
+android/build/
+android/.gradle/
+android/local.properties
+*.iml
+
+# iOS
+ios/Pods/
+ios/build/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+
+# Example app
+example/node_modules/
+example/.expo/
+example/build/

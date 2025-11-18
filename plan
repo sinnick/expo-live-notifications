@@ -1,0 +1,77 @@
+Here is Claude's plan:
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+ Plan: Solución Definitiva para Resolución del Módulo en Metro Bundler
+
+ Problema Identificado
+
+ Metro bundler en Expo SDK 50 no configura automáticamente la resolución de módulos para dependencias locales con
+ file:... El symlink existe en node_modules, pero Metro no puede seguirlo sin configuración explícita.
+
+ Causa Raíz
+
+ - Metro no sigue symlinks por defecto
+ - Metro no monitorea archivos fuera del directorio del proyecto
+ - Falta el archivo metro.config.js que configure watchFolders y nodeModulesPaths
+
+ Pasos de la Solución
+
+ 1. Crear metro.config.js en la carpeta example
+
+ Crear el archivo /home/fernando/code/expo-persistent-notifications/example/metro.config.js con la configuración que
+ permite a Metro:
+ - Monitorear el directorio padre (donde está el módulo)
+ - Buscar módulos correctamente
+ - Evitar conflictos de dependencias duplicadas
+
+ Configuración a aplicar:
+ const { getDefaultConfig } = require('expo/metro-config');
+ const path = require('path');
+
+ const projectRoot = __dirname;
+ const moduleRoot = path.resolve(projectRoot, '..');
+
+ const config = getDefaultConfig(projectRoot);
+
+ config.watchFolders = [moduleRoot];
+ config.resolver.nodeModulesPaths = [
+   path.resolve(projectRoot, 'node_modules'),
+   path.resolve(moduleRoot, 'node_modules'),
+ ];
+ config.resolver.blockList = [
+   new RegExp(`${path.escape(path.resolve(moduleRoot, 'node_modules'))}/.*`),
+ ].concat(config.resolver.blockList || []);
+
+ module.exports = config;
+
+ 2. Limpiar Cachés
+
+ Limpiar todas las cachés de Metro y Expo:
+ cd /home/fernando/code/expo-persistent-notifications/example
+ rm -rf .expo node_modules/.cache /tmp/metro-* /tmp/haste-*
+
+ 3. Reiniciar Metro con Caché Limpia
+
+ npx expo start --clear
+
+ 4. Ejecutar la App en Android
+
+ npx expo run:android
+
+ Resultado Esperado
+
+ ✅ Metro bundler resolverá correctamente expo-persistent-notifications
+ ✅ La app compilará y ejecutará sin errores
+ ✅ Los cambios en el módulo se reflejarán automáticamente durante el desarrollo
+ ✅ No habrá conflictos de dependencias duplicadas
+
+ Tiempo Estimado
+
+ - Crear archivo: 1 minuto
+ - Limpiar caché y ejecutar: 2-3 minutos
+ - Total: ~5 minutos
+
+ Archivos a Modificar
+
+ - Crear: /home/fernando/code/expo-persistent-notifications/example/metro.config.js (nuevo archivo)
+
+ ¿Proceder con esta solución?
